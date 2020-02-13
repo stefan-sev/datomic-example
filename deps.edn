@@ -1,0 +1,35 @@
+{:paths ["src" "resources"]
+ :deps  {org.clojure/clojure             {:mvn/version "1.9.0"}
+         com.datomic/ion                 {:mvn/version "0.9.28"}
+         org.clojure/data.json           {:mvn/version "0.2.6"}
+         org.clojure/core.async          {:mvn/version "0.4.500"}
+         clojure.java-time               {:mvn/version "0.3.2"}
+         com.rpl/specter                 {:mvn/version "1.1.2"}
+         com.datomic/client-pro          {:mvn/version "0.8.28"}
+         io.pedestal/pedestal.service    {:mvn/version "0.5.5"
+                                          :exclusions  [com.cognitect/transit-clj
+                                                        org.clojure/tools.analyzer.jvm
+                                                        org.clojure/core.async]}
+         io.pedestal/pedestal.ions       {:git/url "https://github.com/pedestal/pedestal.ions.git"
+                                          :sha     "ac9a0ddc11521c31e4d617dc10cb912f181e7cae"
+                                          :tag     "0.1.1"}
+         io.pedestal/pedestal.log        {:mvn/version "0.5.5"
+                                          :exclusions  [org.slf4j/slf4j-api]}
+         javax.servlet/javax.servlet-api {:mvn/version "3.1.0"}}
+
+ :mvn/repos {"datomic-cloud" {:url "s3://datomic-releases-1fc2183a/maven/releases"}}
+
+ :aliases
+ {:log   {:extra-paths ["config"]
+          :extra-deps  {ch.qos.logback/logback-classic {:mvn/version "1.2.3"}
+                        org.slf4j/slf4j-api            {:mvn/version "1.7.14"}
+                        org.slf4j/jul-to-slf4j         {:mvn/version "1.7.14"}
+                        org.slf4j/jcl-over-slf4j       {:mvn/version "1.7.14"}
+                        org.slf4j/log4j-over-slf4j     {:mvn/version "1.7.14"}}}
+  :dev   {:extra-deps  {io.pedestal/pedestal.service-tools {:mvn/version "0.5.5"}
+                        io.pedestal/pedestal.jetty         {:mvn/version "0.5.5"}
+                        com.datomic/client-cloud           {:mvn/version "0.8.71"}
+                        com.datomic/ion-dev                {:mvn/version "0.9.186"
+                                                            :exclusions  [org.slf4j/slf4j-nop]}}}
+  :jetty {:extra-paths ["dev"]
+          :extra-deps  {io.pedestal/pedestal.jetty {:mvn/version "0.5.5"}}}}}
